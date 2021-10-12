@@ -1,0 +1,29 @@
+kind: pipeline
+type: kubernetes
+name: build-and-test
+
+trigger:
+  events:
+  - pull_request
+  - push
+
+steps:
+- name: Cargo
+  image: rust:1.55.0-bullseye
+  resources:
+    limits:
+      cpu: 6000
+  commands:
+  - cargo build
+  - cargo test
+
+- name: Slack notifications
+  image: plugins/slack
+  settings:
+    webhook:
+      from_secret: discord_webhook
+    username: Drone CI/CD - prometheus-command-exporter - build-and-test
+  when:
+    status: [ failure ]
+    event: push
+    branch: master

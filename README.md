@@ -1,5 +1,6 @@
 # Prometheus Command Exporter
 [![Build Status](https://drone.k8s.array21.dev/api/badges/TheDutchMC/prometheus-command-exporter/status.svg)](https://drone.k8s.array21.dev/TheDutchMC/prometheus-command-exporter)
+
 Export command output data to Prometheus
 
 ## Usage

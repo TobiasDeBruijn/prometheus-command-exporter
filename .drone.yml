@@ -6,6 +6,7 @@ trigger:
   events:
   - pull_request
   - push
+  - cron
 
 steps:
 - name: Cargo
@@ -22,8 +23,10 @@ steps:
   settings:
     webhook:
       from_secret: discord_webhook
-    username: Drone CI/CD - prometheus-command-exporter - build-and-test
+    username: Drone CI/CD - Twinsight Login Server - build-and-test
   when:
     status: [ failure ]
-    event: push
+    event:
+    - push
+    - cron
     branch: master

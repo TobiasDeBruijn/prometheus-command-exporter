@@ -1,5 +1,5 @@
 kind: pipeline
-type: kubernetes
+type: docker
 name: build-and-test
 
 trigger:
@@ -11,9 +11,6 @@ trigger:
 steps:
 - name: Cargo
   image: rust:1.55.0-bullseye
-  resources:
-    limits:
-      cpu: 6000
   commands:
   - cargo build
   - cargo test
@@ -29,4 +26,5 @@ steps:
     event:
     - push
     - cron
-    branch: master
+    branch:
+    - master
